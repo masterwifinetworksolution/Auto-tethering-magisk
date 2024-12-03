@@ -14,7 +14,7 @@ git clone https://github.com/masterwifinetworksolution/Auto-tethering-magisk.git
 
 3. **Instalasi Termux dan Paket yang Dibutuhkan:**
 
-- Unduh dan pasang aplikasi Termux dari [Google Play Store](https://play.google.com/store/apps/details?id=com.termux) atau situs resmi Termux.
+- Unduh dan pasang aplikasi Termux dari [Fdroid](https://f-droid.org/repo/com.termux_1020.apk) atau situs resmi Termux.
 - Buka Termux dan jalankan perintah berikut untuk memasang `curl`, `busybox`, dan `unzip`:
 
 ```sh
