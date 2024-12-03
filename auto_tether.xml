@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<module>
+    <name>Auto USB Tethering</name>
+    <type>service</type>
+    <service>
+        <name>auto_tethering</name>
+        <script>service.sh</script>
+    </service>
+</module>
