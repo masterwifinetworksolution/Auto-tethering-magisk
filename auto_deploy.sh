@@ -5,7 +5,7 @@
 REPO_URL="https://github.com/masterwifinetworksolution/Auto-tethering-magisk.git"
 
 # Direktori sementara untuk mengkloning repository
-TEMP_DIR="/data/local/tmp/repo-temp"
+TEMP_DIR="/sdcard/tmp/repo-temp"  # Menggunakan /sdcard/tmp
 
 # Direktori root Android
 ROOT_DIR="/system"
@@ -26,4 +26,7 @@ cp -r $TEMP_DIR/* $ROOT_DIR/
 rm -rf $TEMP_DIR
 
 # Logging
-echo "Deploy selesai pada $(date)" >> /system/log/auto_deploy.log
+LOG_DIR="/sdcard/tmp"  # Menggunakan /sdcard/tmp untuk log
+LOG_FILE="$LOG_DIR/auto_deploy.log"
+mkdir -p $LOG_DIR
+echo "Deploy selesai pada $(date)" >> $LOG_FILE
