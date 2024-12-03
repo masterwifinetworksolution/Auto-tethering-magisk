@@ -14,7 +14,7 @@ git clone https://github.com/masterwifinetworksolution/Auto-tethering-magisk.git
 2. **Jalankan script deploy:**
 
 ```sh
-sh Auto-tethering-magisk/auto_deploy.sh
+su -c "sh /path/to/auto_deploy.sh"
 ```
 
 Script deploy akan secara otomatis menyalin semua file yang diperlukan ke direktori root perangkat Android Anda dan mengatur module Magisk.
