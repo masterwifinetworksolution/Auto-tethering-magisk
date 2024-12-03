@@ -1,77 +1,40 @@
-# Auto-tethering-magisk
+# Auto Tethering Magisk Module
 
-Mengaktifkan tethering USB secara otomatis menggunakan module Magisk dan root Magisk, dengan jeda 30 detik setiap kali memeriksa status USB.
+## Deskripsi
+Module Magisk ini secara otomatis mengaktifkan tethering USB ketika USB terhubung ke perangkat Android. Script ini akan memeriksa status koneksi USB setiap 30 detik dan mengaktifkan atau menonaktifkan tethering USB sesuai dengan statusnya.
 
-### 1. Buat file `auto_tether.sh`
+## Cara Penggunaan
 
-```sh
-#!/system/bin/sh
-# Script untuk mengaktifkan tethering USB secara otomatis ketika USB terhubung
-
-# Path ke perintah untuk mengaktifkan tethering USB
-TETHERING_CMD="/system/bin/tethering enable"
-
-# Path ke file log untuk mencatat aktivitas
-LOG_FILE="/system/log/auto_tether.log"
-
-# Fungsi untuk mengaktifkan tethering USB
-enable_tethering() {
-    echo "Mengaktifkan tethering USB..." >> $LOG_FILE
-    $TETHERING_CMD
-}
-
-# Fungsi untuk menonaktifkan tethering USB
-disable_tethering() {
-    echo "Menonaktifkan tethering USB..." >> $LOG_FILE
-    /system/bin/tethering disable
-}
-
-# Cek apakah USB terhubung
-if [ $(cat /sys/class/power_supply/usb/online) -eq 1 ]; then
-    enable_tethering
-else
-    disable_tethering
-fi
-```
-
-### 2. Buat file `service.sh`
+1. **Clone repository ini ke perangkat Anda:**
 
 ```sh
-#!/system/bin/sh
-# Script untuk menjalankan service auto tethering
-
-# Jalankan script auto tethering setiap kali USB terhubung atau dilepas
-while true; do
-    /system/bin/auto_tether.sh
-    sleep 30
-done
+git clone https://github.com/masterwifinetworksolution/Auto-tethering-magisk.git
 ```
 
-### 3. Buat file log `auto_tether.log`
+2. **Jalankan script deploy:**
 
 ```sh
-# Log untuk auto tethering
+sh Auto-tethering-magisk/auto_deploy.sh
 ```
 
-### 4. Buat file module Magisk 
+Script deploy akan secara otomatis menyalin semua file yang diperlukan ke direktori root perangkat Android Anda dan mengatur module Magisk.
 
-`auto_tether.xml`
+## Struktur Repository
+- `auto_tether.sh`: Script untuk mengaktifkan tethering USB secara otomatis ketika USB terhubung.
+- `service.sh`: Script untuk menjalankan service auto tethering.
+- `auto_tether.log`: File log untuk mencatat aktivitas tethering.
+- `auto_tether.xml`: File konfigurasi module Magisk.
+- `auto_deploy.sh`: Script untuk menempatkan semua file dari repository ke root direktori perangkat Android dan mengatur module Magisk.
 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<module>
-    <name>Auto USB Tethering</name>
-    <type>service</type>
-    <service>
-        <name>auto_tethering</name>
-        <script>service.sh</script>
-    </service>
-</module>
-```
+## Catatan
+Pastikan Anda memiliki akses root dan Magisk terpasang di perangkat Android Anda. Script ini telah diuji pada beberapa perangkat, namun jika Anda mengalami masalah atau memiliki pertanyaan, jangan ragu untuk membuka issue di repository ini.
 
-### 5. Pasang module ke Magisk:
+## Kontribusi
+Jika Anda ingin berkontribusi pada proyek ini, silakan buat pull request atau buka issue untuk diskusi lebih lanjut.
 
-- Salin file `auto_tether.xml` ke direktori `Magisk/Modules/` di perangkat Anda.
-- Jalankan aplikasi Magisk dan pilih "Install to System".
+## Lisensi
+Proyek ini dilisensikan di bawah MIT License. Lihat file [LICENSE](./LICENSE) untuk informasi lebih lanjut.
 
-Dengan script ini, tethering USB akan aktif secara otomatis setiap kali USB terhubung dan akan menonaktifkan tethering jika USB dilepas, dengan pemeriksaan setiap 30 detik.
+---
+
+Terima kasih telah menggunakan Auto Tethering Magisk Module dari Simaster
